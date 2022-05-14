@@ -1,0 +1,5 @@
+name: tag-plugin
+author: memetokox420
+version: 1.0.0
+main: ru.rusekh.tagsplugin.TagPlugin
+api-version: 1.17
