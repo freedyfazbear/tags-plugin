@@ -17,6 +17,8 @@ repositories {
 dependencies {
     compileOnly files("libs/spigot.jar")
 
+    implementation 'com.github.simplix-softworks:SimplixStorage:3.2.4'
+
     implementation 'eu.okaeri:okaeri-configs-yaml-bukkit:3.4.2'
     implementation 'eu.okaeri:okaeri-configs-serdes-bukkit:3.4.2'
 
