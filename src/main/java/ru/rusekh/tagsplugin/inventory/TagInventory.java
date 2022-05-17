@@ -27,7 +27,7 @@ public class TagInventory
                 .type(GuiType.CHEST)
                 .create();
 
-        PluginConfiguration.tagList.forEach(tag -> {
+        for (Tag tag : PluginConfiguration.tagList) {
             GuiItem tagItem = ItemBuilder.from(Material.PAPER)
                     .name(Component.text(tag.getName()))
                     .addLore(PluginConfiguration.tagLoreGui.stream().map(s ->
@@ -37,7 +37,7 @@ public class TagInventory
                         TagPlugin.getInstance().getPlayerTags().get(event.getWhoClicked().getUniqueId()).setActualTagName(tag.getName());
                     });
             gui.addItem(tagItem);
-        });
+        }
 
         GuiItem tagItem = ItemBuilder.from(Material.BARRIER)
                 .name(Component.text(ChatColor.RED + "Click to remove tag"))
@@ -45,7 +45,7 @@ public class TagInventory
                     TagPlugin.getInstance().getPlayerTags().get(event.getWhoClicked().getUniqueId()).setActualTagName("");
                     ChatHelper.sendMessage((Player) event.getWhoClicked(), PluginConfiguration.tagSuccessfullyUnequipped);
                 });
-        gui.setItem(53, tagItem);
+        gui.setItem(26, tagItem);
         gui.open(player);
     }
 }
