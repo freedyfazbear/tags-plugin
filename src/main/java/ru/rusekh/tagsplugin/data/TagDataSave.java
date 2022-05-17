@@ -12,6 +12,9 @@ public class TagDataSave
 
     public TagDataSave() {
         file = new Json("tags.json", "plugins/tag-plugin/data/");
+    }
+
+    public void load() {
         file.getSection("tags").singleLayerKeySet().forEach(tags -> {
             UUID owner = UUID.fromString(file.getString("owner," + tags));
             String tagName = file.getString("owner," + tags + ",tagName");

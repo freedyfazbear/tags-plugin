@@ -8,19 +8,22 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import ru.rusekh.tagsplugin.TagPlugin;
-import ru.rusekh.tagsplugin.data.TagDataSave;
 import ru.rusekh.tagsplugin.helper.ChatHelper;
 import ru.rusekh.tagsplugin.object.PlayerTag;
 
-import java.util.Arrays;
-import java.util.Collections;
-
-public class PlayerChatHandler implements Listener
+public class PlayerHandler implements Listener
 {
     @EventHandler(priority = EventPriority.LOW)
     private void onPlayerChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
-        event.setFormat(ChatHelper.color("&8[" + TagPlugin.getInstance().getPlayerTags().get(event.getPlayer().getUniqueId()).getActualTagName() + "&8] &7" + player.getDisplayName() + "&8: &f" + "%2$s"));
+        if (TagPlugin.getInstance().getPlayerTags().get(event.getPlayer().getUniqueId()) == null) {
+            TagPlugin.getInstance().getPlayerTags().put(event.getPlayer().getUniqueId(), new PlayerTag(event.getPlayer().getUniqueId(), ""));
+        }
+        if (TagPlugin.getInstance().getPlayerTags().get(player.getUniqueId()).getActualTagName().equals("")) {
+            event.setFormat(ChatHelper.color("&7" + player.getDisplayName() + "&8: &f" + "%2$s"));
+        } else {
+            event.setFormat(ChatHelper.color("&8[" + TagPlugin.getInstance().getPlayerTags().get(event.getPlayer().getUniqueId()).getActualTagName() + "&8] &7" + player.getDisplayName() + "&8: &f" + "%2$s"));
+        }
     }
 
     @EventHandler

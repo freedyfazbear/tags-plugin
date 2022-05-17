@@ -12,6 +12,7 @@ repositories {
     maven { url "https://storehouse.okaeri.eu/repository/maven-public/" }
     maven { url = "https://repo.mattstudios.me/artifactory/public/" }
     maven { url 'https://jitpack.io' }
+    maven {url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'}
 }
 
 dependencies {
@@ -21,6 +22,8 @@ dependencies {
 
     implementation 'eu.okaeri:okaeri-configs-yaml-bukkit:3.4.2'
     implementation 'eu.okaeri:okaeri-configs-serdes-bukkit:3.4.2'
+
+    compileOnly 'me.clip:placeholderapi:2.11.1'
 
     implementation 'com.github.vaperion:blade:2.1.8'
 

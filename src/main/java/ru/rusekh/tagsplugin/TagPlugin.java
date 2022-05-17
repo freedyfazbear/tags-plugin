@@ -9,7 +9,8 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import ru.rusekh.tagsplugin.commands.TagCommand;
 import ru.rusekh.tagsplugin.data.TagDataSave;
-import ru.rusekh.tagsplugin.handler.PlayerChatHandler;
+import ru.rusekh.tagsplugin.expansion.PlaceholderHelper;
+import ru.rusekh.tagsplugin.handler.PlayerHandler;
 import ru.rusekh.tagsplugin.object.PlayerTag;
 import ru.rusekh.tagsplugin.serialization.TagSerialization;
 
@@ -39,9 +40,16 @@ public class TagPlugin extends JavaPlugin
                 .build()
                 .register(new TagCommand());
         tagDataSave = new TagDataSave();
+        tagDataSave.load();
+
+        if (getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            new PlaceholderHelper().register();
+        } else {
+            getLogger().warning("PlaceholderAPI not found! Placeholders will not work!");
+        }
 
         PluginManager pluginManager = getServer().getPluginManager();
-        pluginManager.registerEvents(new PlayerChatHandler(), this);
+        pluginManager.registerEvents(new PlayerHandler(), this);
     }
 
     @Override
