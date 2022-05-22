@@ -38,12 +38,7 @@ public class PlaceholderHelper extends PlaceholderExpansion
             return "Error!";
         }
         if (params.equals("tagname")) {
-            ChatHelper.sendMessage(onlinePlayer, "trying!");
             return "" + TagPlugin.getInstance().getPlayerTags().get(onlinePlayer.getUniqueId()).getActualTagName();
-        }
-        if (params.equals("test")) {
-            ChatHelper.sendMessage(onlinePlayer, "trying too!");
-            return "test";
         }
         return params;
     }

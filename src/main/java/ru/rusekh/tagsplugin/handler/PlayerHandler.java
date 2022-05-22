@@ -17,7 +17,7 @@ public class PlayerHandler implements Listener
     private void onPlayerChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
         if (TagPlugin.getInstance().getPlayerTags().get(event.getPlayer().getUniqueId()) == null) {
-            TagPlugin.getInstance().getPlayerTags().put(event.getPlayer().getUniqueId(), new PlayerTag(event.getPlayer().getUniqueId(), ""));
+            TagPlugin.getInstance().getTagDataSave().load();
         }
         if (TagPlugin.getInstance().getPlayerTags().get(player.getUniqueId()).getActualTagName().equals("")) {
             event.setFormat(ChatHelper.color("&7" + player.getDisplayName() + "&8: &f" + "%2$s"));
@@ -28,6 +28,7 @@ public class PlayerHandler implements Listener
 
     @EventHandler
     private void onPlayerJoin(PlayerJoinEvent event) {
+        TagPlugin.getInstance().getTagDataSave().load();
         if (TagPlugin.getInstance().getPlayerTags().get(event.getPlayer().getUniqueId()) == null) {
             TagPlugin.getInstance().getPlayerTags().put(event.getPlayer().getUniqueId(), new PlayerTag(event.getPlayer().getUniqueId(), ""));
         }
